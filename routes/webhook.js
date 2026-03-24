@@ -18,6 +18,21 @@ const router = express.Router();
 
 const VERIFY_TOKEN = "film_bot_verify";
 
+router.get("/", (req, res) => {
+
+  const mode = req.query["hub.mode"];
+  const token = req.query["hub.verify_token"];
+  const challenge = req.query["hub.challenge"];
+
+  if (mode === "subscribe" && token === VERIFY_TOKEN) {
+    console.log("Webhook verified");
+    res.status(200).send(challenge);
+  } else {
+    res.sendStatus(403);
+  }
+
+});
+
 router.post("/", async (req, res) => {
 
   const body = req.body;

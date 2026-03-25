@@ -34,7 +34,9 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-
+  
+  console.log("🔥 WEBHOOK HIT");
+  
   const body = req.body;
 
   try {
